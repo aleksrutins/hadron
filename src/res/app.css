@@ -1,0 +1,24 @@
+.titlebar {
+  background: #212224;
+  color: white;
+}
+
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  transition-property: all;
+  transition-duration: .2s;
+}
+
+button:hover, button:active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+button.primary {
+  background: blue;
+}
+
+window {
+  background: white;
+}
