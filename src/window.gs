@@ -17,15 +17,18 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
+[indent=4]
 
-namespace Hadron {
+uses
+    Gtk
+    GLib
+
+namespace Hadron
     [GtkTemplate (ui = "/com/rutins/Hadron/window.ui")]
-    public class Window : Gtk.ApplicationWindow {
+    class Window : Gtk.ApplicationWindow
         [GtkChild]
-        private unowned Gtk.Label label;
+        sourceview: unowned GtkSource.View
 
-        public Window (Gtk.Application app) {
+        construct(app: Application)
             Object (application: app);
-        }
-    }
-}
+
