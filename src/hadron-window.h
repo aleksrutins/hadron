@@ -1,4 +1,4 @@
-/* main.vala
+/* hadron-window.h
  *
  * Copyright 2023 Aleks Rutins
  *
@@ -18,7 +18,14 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-int main (string[] args) {
-    var app = new Hadron.Application ();
-    return app.run (args);
-}
+#pragma once
+
+#include <adwaita.h>
+
+G_BEGIN_DECLS
+
+#define HADRON_TYPE_WINDOW (hadron_window_get_type())
+
+G_DECLARE_FINAL_TYPE (HadronWindow, hadron_window, HADRON, WINDOW, AdwApplicationWindow)
+
+G_END_DECLS

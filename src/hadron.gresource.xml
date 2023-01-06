@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/com/rutins/Hadron">
-    <file preprocess="xml-stripblanks">window.ui</file>
+    <file preprocess="xml-stripblanks">hadron-window.ui</file>
     <file preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
-    <file>res/app.css</file>
   </gresource>
 </gresources>

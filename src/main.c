@@ -1,4 +1,4 @@
-/* window.vala
+/* main.c
  *
  * Copyright 2023 Aleks Rutins
  *
@@ -17,18 +17,26 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-[indent=4]
 
-uses
-    Gtk
-    GLib
+#include "config.h"
 
-namespace Hadron
-    [GtkTemplate (ui = "/com/rutins/Hadron/window.ui")]
-    class Window : Gtk.ApplicationWindow
-        [GtkChild]
-        sourceview: unowned GtkSource.View
+#include <glib/gi18n.h>
 
-        construct(app: Application)
-            Object (application: app);
+#include "hadron-application.h"
 
+int
+main (int   argc,
+      char *argv[])
+{
+	g_autoptr(HadronApplication) app = NULL;
+	int ret;
+
+	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+	textdomain (GETTEXT_PACKAGE);
+
+	app = hadron_application_new ("com.rutins.Hadron", G_APPLICATION_FLAGS_NONE);
+	ret = g_application_run (G_APPLICATION (app), argc, argv);
+
+	return ret;
+}
