@@ -1,1 +1,5 @@
-/subprojects/blueprint-compiler
+# Godot 4+ specific ignores
+.godot/
+*.os
+.sconsign.dblite
+demo/bin/

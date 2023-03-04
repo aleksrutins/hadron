@@ -1,6 +1,0 @@
-data/com.rutins.Hadron.desktop.in
-data/com.rutins.Hadron.appdata.xml.in
-data/com.rutins.Hadron.gschema.xml
-src/main.c
-src/hadron-window.c
-src/hadron-window.ui
