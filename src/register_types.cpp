@@ -1,6 +1,7 @@
 #include "register_types.h"
 
 #include "gdexample.h"
+#include "workbench.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -8,6 +9,7 @@
 #include <godot_cpp/godot.hpp>
 
 using namespace godot;
+using namespace hadron;
 
 void initialize_hadron(ModuleInitializationLevel p_level) {
     if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
@@ -15,6 +17,7 @@ void initialize_hadron(ModuleInitializationLevel p_level) {
     }
 
     ClassDB::register_class<GDExample>();
+    ClassDB::register_class<Workbench>();
 }
 
 void uninitialize_hadron(ModuleInitializationLevel p_level) {
