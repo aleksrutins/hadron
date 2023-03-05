@@ -1,6 +1,7 @@
 #pragma once
 
 #include <godot_cpp/classes/h_box_container.hpp>
+#include <godot_cpp/classes/button.hpp>
 
 namespace hadron {
     class Workbench : public godot::HBoxContainer {
@@ -11,6 +12,8 @@ namespace hadron {
     
     public:
         Workbench();
+        void _ready();
+        void launch_panel(godot::InputEvent *ev);
         ~Workbench();
     };
 }

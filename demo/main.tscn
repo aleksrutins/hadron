@@ -20,7 +20,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="SidePanel" type="Control" parent="Workbench"]
+[node name="SidePanel" type="VBoxContainer" parent="Workbench"]
 layout_mode = 2
 
 [node name="TabsView" type="TabContainer" parent="Workbench"]

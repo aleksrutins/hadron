@@ -9,8 +9,8 @@ namespace hadron {
     protected:
         static void _bind_methods();
     public:
-        godot::Image icon();
-        godot::String title();
-        void build();
+        auto icon() -> Ref<Texture2D>;
+        auto title() -> String;
+        auto build() -> Node*;
     };
 }
