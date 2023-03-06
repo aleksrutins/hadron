@@ -6,4 +6,5 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-screen-13 = "0.8.1"
+eframe = "0.21.3"
+tracing-subscriber = "0.3.16"
