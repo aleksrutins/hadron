@@ -1,6 +1,9 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")] // hide console window on Windows in release
 
-use eframe::{egui, Theme};
+mod panels;
+
+use eframe::{egui::{self, Id}, Theme, epaint::Vec2};
+use panels::{Panel, explorer::Explorer};
 
 fn main() -> Result<(), eframe::Error> {
     // Log to stdout (if you run with `RUST_LOG=debug`).
@@ -21,6 +24,8 @@ fn main() -> Result<(), eframe::Error> {
 struct MyApp {
     name: String,
     age: u32,
+    panels: Vec<Box<dyn Panel>>,
+    current_panel: usize
 }
 
 impl Default for MyApp {
@@ -28,12 +33,35 @@ impl Default for MyApp {
         Self {
             name: "Arthur".to_owned(),
             age: 42,
+            panels: vec![
+                Box::new(Explorer {})
+            ],
+            current_panel: 0
         }
     }
 }
 
 impl eframe::App for MyApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+        egui::SidePanel::left(Id::new("toolbox_sidebar")).default_width(24.0).show(ctx, |ui| {
+            ui.vertical(|ui| {
+                for (idx, panel) in self.panels.iter().enumerate() {
+                    if panel.icon().show_size(ui, Vec2::splat(24.0)).clicked() {
+                        self.current_panel = idx;
+                    }
+                }
+            });
+        });
+        egui::SidePanel::left(Id::new("toolbox_selected_item_view")).show(ctx, |ui| {
+            ui.vertical(|ui| {
+                let Some(panel) = self.panels.get_mut(self.current_panel) else {
+                    ui.label("No panel selected");
+                    return;
+                };
+                ui.heading(panel.title());
+                panel.build(ctx, ui);
+            });
+        });
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.heading("My egui Application");
             ui.horizontal(|ui| {
