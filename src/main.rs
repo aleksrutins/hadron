@@ -2,8 +2,8 @@
 
 mod panels;
 
-use eframe::{egui::{self, Id}, Theme, epaint::Vec2};
-use panels::{Panel, explorer::Explorer};
+use eframe::{egui::{self, Id, Sense}, Theme, epaint::Vec2};
+use panels::{Panel, explorer::Explorer, search::Search};
 
 fn main() -> Result<(), eframe::Error> {
     // Log to stdout (if you run with `RUST_LOG=debug`).
@@ -34,7 +34,8 @@ impl Default for MyApp {
             name: "Arthur".to_owned(),
             age: 42,
             panels: vec![
-                Box::new(Explorer {})
+                Box::new(Explorer {}),
+                Box::new(Search {})
             ],
             current_panel: 0
         }
@@ -46,7 +47,9 @@ impl eframe::App for MyApp {
         egui::SidePanel::left(Id::new("toolbox_sidebar")).default_width(24.0).show(ctx, |ui| {
             ui.vertical(|ui| {
                 for (idx, panel) in self.panels.iter().enumerate() {
-                    if panel.icon().show_size(ui, Vec2::splat(24.0)).clicked() {
+                    if panel.icon().show_size(ui, Vec2::splat(24.0))
+                        .interact(Sense::click())
+                        .clicked() {
                         self.current_panel = idx;
                     }
                 }
